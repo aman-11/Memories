@@ -5,7 +5,7 @@ const express = require('express');
 /*var type = {
     list: require('../controllers/posts.js').list
   }*/
-const type = require('../controllers/posts.js');
+var type = require('../controllers/posts.js');
 
 const router = express.Router();
 //localhost:5000/posts
