@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true
     }).then( () => app.listen(PORT, () => console.log(`server running on PORT :${PORT}`)))
     .catch((error) => console.log(error.message));
