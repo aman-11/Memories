@@ -15,7 +15,7 @@ const getPosts = async (req, res) => {
     }
 };
 //module.exports = getPosts;
-exports.getPosts = getPosts;
+module.exports.getPosts = getPosts;
 
 
 const createPost =async (req, res) => {
@@ -28,8 +28,8 @@ const createPost =async (req, res) => {
         res.status(409).json({message:error.message});
     }
 };
-//module.exports = createPost;
-exports.createPost = createPost;
+//module.module.exports = createPost;
+module.exports.createPost = createPost;
 
 
 const updatePost = async (req, res) => {
@@ -45,7 +45,7 @@ const updatePost = async (req, res) => {
     res.json(updatedPost);
 
 }
-exports.updatePost = updatePost;
+module.exports.updatePost = updatePost;
 
 
 const deletePost = async (req, res) => {
@@ -58,7 +58,7 @@ const deletePost = async (req, res) => {
     res.json({message:'Post deleted successfully!'});
 
 }
-exports.deletePost = deletePost;
+module.exports.deletePost = deletePost;
 
 const likePost = async (req, res) => {
     
@@ -71,4 +71,4 @@ const likePost = async (req, res) => {
 
     res.json(updatedPost);
 }
-exports.likePost = likePost;
+module.exports.likePost = likePost;
