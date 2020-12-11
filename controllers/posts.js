@@ -18,6 +18,7 @@ const getPosts = async (req, res) => {
 module.exports.getPosts = getPosts;
 
 
+
 const createPost =async (req, res) => {
     const post = req.body;
     const newPost = new postMessage(post);
@@ -32,20 +33,22 @@ const createPost =async (req, res) => {
 module.exports.createPost = createPost;
 
 
+
 const updatePost = async (req, res) => {
     
-    const { id: _id } = req.params;
+    const { id} = req.params;
     const post = req.body;
-    
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No post with id`);
+    const { title, message, creator, selectedFile, tags } = req.body;
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id`);
 
+    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
 
-    const updatedPost = await postMessage.findByIdAndUpdate(_id, { ...post, _id }, { new: true });
-
+    await postMessage.findByIdAndUpdate(id, updatedPost, { new: true });
     res.json(updatedPost);
 
 }
 module.exports.updatePost = updatePost;
+
 
 
 const deletePost = async (req, res) => {
@@ -59,6 +62,8 @@ const deletePost = async (req, res) => {
 
 }
 module.exports.deletePost = deletePost;
+
+
 
 const likePost = async (req, res) => {
     
