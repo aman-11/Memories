@@ -1,18 +1,14 @@
-const express = require('express');
+import express from 'express';
 
-//const getPosts = require('../controllers/posts.js');
-//const createPost= require('../controllers/posts.js');
-/*var type = {
-    list: require('../controllers/posts.js').list
-  }*/
-var type = require('../controllers/posts.js');
+import { getPosts, getPost, createPost, updatePost, likePost, deletePost } from '../controllers/posts.js';
 
 const router = express.Router();
-//localhost:5000/posts
+import auth from '../middleware/auth.js';
 
-router.get('/', type.getPosts);
-router.post('/', type.createPost);
-router.patch('/:id', type.updatePost);
-router.delete('/:id', type.deletePost);
-router.patch('/:id/likePost',type.likePost);
-module.exports = router;
+router.get('/', getPosts);
+router.post('/', auth, createPost);
+router.patch('/:id', auth, updatePost);
+router.delete('/:id', auth, deletePost);
+router.patch('/:id/likePost', auth, likePost);
+
+export default router;

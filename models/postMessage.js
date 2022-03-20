@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
     title: String,
@@ -6,14 +6,16 @@ const postSchema = mongoose.Schema({
     creator: String,
     tags: [String],
     selectedFile: String,
-    likeCount: {
-        type: Number,
-        default: 0
+    likes: {
+        type: [String],
+        default: []
     },
     createdAt: {
         type: Date,
-        default: new Date()
+        default: new Date(),
     },
-});
-const postMessage = mongoose.model('postMessage', postSchema);
-module.exports = postMessage;
+})
+
+var PostMessage = mongoose.model('PostMessage', postSchema);
+
+export default PostMessage;
